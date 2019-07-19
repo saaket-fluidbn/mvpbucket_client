@@ -32,7 +32,7 @@ export default function NewDocBucketModal({onClick}) {
                     <DialogContentText>
                         Store docs for your project
           </DialogContentText>
-                    <form>
+                    <form enctype='multipart/form-data'>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -42,8 +42,8 @@ export default function NewDocBucketModal({onClick}) {
                         name="title"
                         fullWidth
                     />
-                    <input type='file' name='file' id='file' style={{ display:'none' }} multiple/>
-                        <label htmlFor='file'><img src={upload} alt='upload docs' style={{ cursor:'pointer' }}/> </label>
+                    <input type='file' name='docs' id='docs' style={{ display:'none' }} multiple/>
+                        <label htmlFor='docs' style={{ cursor: 'pointer' }}><img src={upload} alt='Upload docs' /> Pick files </label>
                            
            
                     </form>
