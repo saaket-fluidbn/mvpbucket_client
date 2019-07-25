@@ -5,7 +5,8 @@ class Logout extends React.Component {
    
    componentDidMount() {
        auth.logout();
-       window.location = '/';
+       const { state } = this.props.location;
+       window.location = state ? state.from.pathname : '/';
    }
    
    

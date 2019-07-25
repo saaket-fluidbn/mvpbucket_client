@@ -1,5 +1,3 @@
-//
-
 
 /**  nav  */
 
@@ -19,9 +17,14 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 // import MailIcon from '@material-ui/icons/Mail';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
 import { withRouter } from 'react-router-dom';
 import SideMenu from './sideMenu';
+import { Link } from 'react-router-dom';
+import  List  from '@material-ui/core/List';
+import  ListItem  from '@material-ui/core/ListItem';
+import  ListItemText  from '@material-ui/core/ListItemText';
+import  Container  from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -92,7 +95,7 @@ const Navbar = withRouter(props => {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const { user } = props;
+    const { user, value, searchResults, onChange, onClick } = props;
 
     function handleProfileMenuOpen(event) {
         setAnchorEl(event.currentTarget);
@@ -119,7 +122,8 @@ const Navbar = withRouter(props => {
     // }
     function handleMenuClick(tag) {
         if (tag === 'profile')
-            props.history.push('/profile');
+            // props.history.push('/profile');
+            window.location = '/profile';
         else if (tag === 'dashboard')
             window.location = '/';
         else if (tag === 'login')
@@ -202,7 +206,7 @@ const Navbar = withRouter(props => {
                     }
 
                     <Typography className={classes.title} variant="h6" noWrap>
-                        MvpBucket
+                       <Link style={{ textDecoration:'none', color:'white' }}to='/'> MvpBucket</Link>
           </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
@@ -215,8 +219,13 @@ const Navbar = withRouter(props => {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'Search' }}
+                            value={value}
+                            name="search"
+                            onChange={onChange}
                         />
+                       
                     </div>
+                    
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
 
@@ -244,7 +253,19 @@ const Navbar = withRouter(props => {
                         </IconButton>
                     </div>
                 </Toolbar>
+                <Container maxWidth='lg'>
+                    <Grid lg={4} xs={12}>
+                        {searchResults.map(result => (
+                            <List key={result._id}>
+                                <ListItem button onClick={() => onClick(result.title)}>
+                                    <ListItemText primary={result.title} />
+                                </ListItem>
+                            </List>
+                        ))}
+                    </Grid>
+                </Container>
             </AppBar>
+            
             {renderMobileMenu}
             {renderMenu}
         </div>

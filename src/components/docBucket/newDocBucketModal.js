@@ -9,7 +9,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import  Fab  from '@material-ui/core/Fab';
 import  AddIcon  from '@material-ui/icons/Add';
 import upload from '../../svg/baseline-cloud_upload-24px.svg';
-export default function NewDocBucketModal({onClick}) {
+
+export default function NewDocBucketModal({ onChange, onSubmit}) {
     const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
@@ -32,7 +33,7 @@ export default function NewDocBucketModal({onClick}) {
                     <DialogContentText>
                         Store docs for your project
           </DialogContentText>
-                    <form enctype='multipart/form-data'>
+                    <form onSubmit={onSubmit} encType='multipart/form-data'>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -42,20 +43,20 @@ export default function NewDocBucketModal({onClick}) {
                         name="title"
                         fullWidth
                     />
-                    <input type='file' name='docs' id='docs' style={{ display:'none' }} multiple/>
+                    <input type='file' name='docs' id='docs' style={{ display:'none' }} onChange={onChange} multiple/>
                         <label htmlFor='docs' style={{ cursor: 'pointer' }}><img src={upload} alt='Upload docs' /> Pick files </label>
                            
-           
-                    </form>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+            <DialogActions>
+                    <Button type="submit" color="primary">
                         Upload
           </Button>
                     <Button onClick={handleClose} color="primary">
                         Cancel
           </Button>
                 </DialogActions>
+                    </form>
+                </DialogContent>
+               
             </Dialog>
         </div>
     );

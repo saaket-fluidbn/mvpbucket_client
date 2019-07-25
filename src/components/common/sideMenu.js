@@ -7,8 +7,6 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import MenuIcon  from '@material-ui/icons/Menu';
@@ -37,7 +35,7 @@ const useStyles = makeStyles(theme=>({
     const classes = useStyles();
      const theme = useTheme();
     // const [open, setOpen] = React.useState(false);
-    const features = ['New Project', 'docBucket', 'Share Repository'];
+    const features = ['New Project', 'docBucket'];
     const [state, setState] = React.useState({
         
         left: false,
@@ -51,6 +49,7 @@ const useStyles = makeStyles(theme=>({
        else if (text === 'docBucket') {
             props.history.push('/docBucket');
         }
+      
     }
     const toggleDrawer = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -59,7 +58,7 @@ const useStyles = makeStyles(theme=>({
 
         setState({ ...state, [side]: open });
     };
-  
+
 
     const sideList = side => (
         <div
@@ -84,6 +83,7 @@ const useStyles = makeStyles(theme=>({
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
+                
             </List>
            
           

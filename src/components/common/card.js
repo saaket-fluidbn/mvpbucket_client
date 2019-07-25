@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 // import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CommonButton from './../buttons/button';
+import Modal from '../common/modal';
+import { capitalize } from './../../utils/capitalize';
 
 const useStyles = makeStyles({
   card: {
@@ -17,10 +19,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CommonCard({data, label1, label2, buttonLabel, buttonClickHandle, cardClickHandle }) {
+export default function CommonCard({ data, label1, label2, buttonLabel1, buttonLabel2, editHandle, deleteHandle, cardClickHandle, onChange }) {
     const classes = useStyles();
+  const titleContentDelete = `Are you sure to delete the project ${capitalize(data.title)}? Action can't be undone.`
+  const titleContentEdit = `Edit project ${capitalize(data.title)}.`
 
-    return (
+  return (
         <Card className={classes.card}>
             <CardActionArea onClick={cardClickHandle}>
                 {/* <CardMedia
@@ -39,7 +43,27 @@ export default function CommonCard({data, label1, label2, buttonLabel, buttonCli
             </CardActionArea>
             <CardActions>
                 <p style={{ fontWeight: 'bold' }}>Status: {data.isLive ? ' Live' : ' Not Live'}</p>
-                <CommonButton label={buttonLabel} onClick={buttonClickHandle}/>
+          {/* <CommonButton label={buttonLabel1} onClick={editHandle} size='small' /> */}
+          <Modal
+            openButtonLabel="Edit"
+          primaryButtonLabel="Save"
+        onChange={onChange}
+            secondaryButtonLabel=" Cancel"
+            onClickPrimary={editHandle}
+            data={data}
+          size='small'
+          edit={true}
+            titleContent={titleContentEdit}
+          />
+          <Modal
+            openButtonLabel="Delete"
+            primaryButtonLabel="Yes, delete"
+            secondaryButtonLabel=" Cancel"
+            onClickPrimary={deleteHandle}
+            data={data}
+            size='small'
+            titleContent={titleContentDelete}
+             />
             </CardActions>
         </Card>
     );

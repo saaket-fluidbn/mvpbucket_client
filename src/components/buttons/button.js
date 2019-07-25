@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     },
     
 }));
-const CommonButton = ({label, onClick}) => {
+const CommonButton = ({label, size, onClick}) => {
     const classes = useStyles();
     
     
@@ -51,9 +51,9 @@ const CommonButton = ({label, onClick}) => {
       <>
                 <Button 
                 variant="outlined" 
-                style={{ backgroundColor: 'white', color: 'black' }}
+                style={{ color: '#4dc5da', borderColor: '#4dc5da' }}
                 onClick={onClick} 
-                size="large"
+                size={size}
                 className={classes.margin}>
                 {label}
                 </Button>

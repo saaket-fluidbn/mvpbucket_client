@@ -59,9 +59,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function SignupForm({ onSubmit, onChange, firstName, lastName, college, email, username, password }) {
+function Form({ onSubmit, onChange, data}) {
     const classes = useStyles();
-
+    const { firstName, lastName, college, username } = data;
     return (
         <Container component="main" maxWidth="xs">
 
@@ -76,7 +76,7 @@ function SignupForm({ onSubmit, onChange, firstName, lastName, college, email, u
 
 
                 <Typography component="h1" variant="h5">
-                    Signup
+                    Profile
         </Typography>
                 <form onSubmit={onSubmit} className={classes.form}>
                     <Grid container spacing={2}>
@@ -120,7 +120,7 @@ function SignupForm({ onSubmit, onChange, firstName, lastName, college, email, u
                                 autoComplete="college"
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
                                 required
@@ -132,7 +132,7 @@ function SignupForm({ onSubmit, onChange, firstName, lastName, college, email, u
                                 onChange={onChange}
                                 autoComplete="email"
                             />
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
@@ -146,7 +146,7 @@ function SignupForm({ onSubmit, onChange, firstName, lastName, college, email, u
                                 autoComplete="username"
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
                                 required
@@ -160,14 +160,8 @@ function SignupForm({ onSubmit, onChange, firstName, lastName, college, email, u
                                 autoComplete="current-password"
 
                             />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" style={{ backgroundColor: '#4dc5da', color: 'white' }} />}
-
-                                label="I want to receive inspiration and updates via email."
-                            />
-                        </Grid>
+                        </Grid> */}
+                       
                     </Grid>
                     <Button
                         type="submit"
@@ -177,24 +171,13 @@ function SignupForm({ onSubmit, onChange, firstName, lastName, college, email, u
                         className={classes.submit}
                         style={{ backgroundColor: '#4dc5da', color: 'white' }}
                     >
-                        Sign Up
+                        Update
           </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link to='/login' variant="body2">
-                                Already have an account? Sign in
-              </Link>
-                        </Grid>
-                        <Grid item>
-
-                            <p>By signing up you are agreeing to our terms and privacy.</p>
-
-                        </Grid>
-                    </Grid>
+                   
                 </form>
             </div>
 
         </Container>
     );
 }
-export default SignupForm;
+export default Form;

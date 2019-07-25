@@ -1,22 +1,23 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography';
-import NewDocBucketModal from '../docBucket/newDocBucketModal';
+// import NewDocBucketModal from '../docBucket/newDocBucketModal';
 import Grid from '@material-ui/core/Grid';
+import  Container  from '@material-ui/core/Container';
 
 
 
-const WithProjectHeader = ({user, label, illus, onClick}) => {
+const WithProjectHeader = ({label, illus}) => {
   return (
-    <>
+    <Container>
       <Typography variant="h2" style={{ marginTop: '5%' }}>
-        {label}{user ? `, ${user.firstName}` : null}
+        {label}
               </Typography>
               <br />
-              <NewDocBucketModal onClick={onClick}/>
+              
               <Grid lg={4} xs={12} spacing={2}>
                 <img src={illus} alt="" />
               </Grid>
-    </>
+    </Container>
   )
 }
 

@@ -3,11 +3,11 @@ import  Fab  from '@material-ui/core/Fab';
 import  AddIcon  from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-const NoProjectHeader = ({user, label1, label2, illus, onClick}) => {
+const NoProjectHeader = ({label1, label2, illus, onClick}) => {
     return (
         <>
              <Typography variant="h2" style={{ marginTop: '5%' }}>
-                {user ?  `${user.firstName},`  : null} {label1} 
+                 {label1} 
               </Typography>
                <Typography variant="h4" style={{ marginTop: '5%' }}>
                 {label2}<br/><br/>

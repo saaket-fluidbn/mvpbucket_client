@@ -89,12 +89,14 @@ class ProductTemplate extends Component {
             github,
             behance
         }
-        try { await addProject(project);}
+        try { await addProject(project);
+            window.location = '/';}
         catch (ex) {
-            toast.error(ex.message); // change to something went wrong
+           if(ex.response.status===400)
+            toast.error(ex.response.data); // change to something went wrong
     }
         
-        window.location = '/';
+       
 
     }
   // handling input change

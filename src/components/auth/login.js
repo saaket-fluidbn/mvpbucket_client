@@ -21,7 +21,8 @@ class Login extends Component {
       e.preventDefault();
     const user = this.state.user;
     await auth.loginUser(user);
-    window.location = '/';
+    const { state } = this.props.location;
+    window.location = state ? state.from.pathname : '/';
   }
   catch (ex) {
     toast.error(ex.message);

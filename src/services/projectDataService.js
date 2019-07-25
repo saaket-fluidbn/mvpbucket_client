@@ -15,6 +15,12 @@ export const addProject = (project) => {
 export const getProjects = () => {
     return http.get(api, config);
 }
-export const getProject = (id) => {
-    return http.get(`${api}/${id}`, config);
+export const getProject = (title) => {
+    return http.get(`${api}/${title}`, config);
+}
+export const getProjectRepo = (username) => {
+    return http.get(`http://localhost:5000/api/show-repository/${username}`);
+}
+export const deleteProject = (id) => {
+    return http.delete(`${api}/${id}`, config);
 }
