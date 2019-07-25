@@ -58,9 +58,9 @@ import Switch from '@material-ui/core/Switch';
         );
     });
 
-export default function IosSwitch({onClick}) {
+export default function IosSwitch({onClick, defaultVal}) {
     const [state, setState] = React.useState({
-        checkedB: false,
+        checkedB: defaultVal,
     });
 
     const handleChange = name => event => {

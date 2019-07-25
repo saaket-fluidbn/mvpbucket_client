@@ -23,19 +23,7 @@ class Dashboard extends Component {
     projects: [],
     user: {},
     repoUrl: '',
-    editedProject:{
-      isLive: false,
-      liveurl: '',
-      title: '',
-      description: '',
-      productStory: '',
-      why: '',
-      targetUsers: '',
-      tags: '',
-      message: '',
-      github: '',
-      behance: ''
-    }
+   
   }
 
   handleClick = async (title) => {
@@ -54,45 +42,31 @@ class Dashboard extends Component {
     }
   }
 
-  gettingProjects = () => {
-  const oldProjects = { ...this.state.projects };
 
-
-    getProjects().then(res => {
-      const projects = res.data;
-      const user = auth.getCurrentUser();
-      this.setState({ projects, user });
-    })
-      .catch(err => {
-        toast.error("Something went wrong");
-        this.setState({ projects: oldProjects });
-      });
-
-
-  }
   handleClickNoProject = () => {
     this.props.history.push('/new');
   }
- // change in edit
-  onChangeEdit = ({ currentTarget }) => {
-    let editedProject;
-     editedProject[currentTarget.name] = currentTarget.value;
-    this.setState({ editedProject });
-}
+//  // change in edit
+//   onChangeEdit = ({ currentTarget }) => {
+//     let editedProject;
+//      editedProject[currentTarget.name] = currentTarget.value;
+//     this.setState({ editedProject });
+// }
   
 // edit project
-  handleEdit = (id) => {
+  handleEdit = (project) => {
+  this.props.history.push('/project/edit', project);
   
 }
 
 // delete project
   
-  handleDelete = async (id) => {
+  handleDelete = async (projectToDelete) => {
     let oldProjects = this.state.projects;
     try {
-      const projects = this.state.projects.filter(project => project._id !== id);
+      const projects = this.state.projects.filter(project => project._id !== projectToDelete._id);
       this.setState({ projects });
-      await deleteProject(id);
+      await deleteProject(projectToDelete._id);
     }
     catch (ex) {
       toast.error("Something went wrong...");
@@ -102,8 +76,23 @@ class Dashboard extends Component {
  
   componentDidMount() {
 
-    this.gettingProjects();
-    const user = auth.getCurrentUser();;
+    const oldProjects = { ...this.state.projects };
+
+
+    getProjects().then(res => {
+      const projects = res.data;
+      const user = auth.getCurrentUser();
+      this.setState({ projects, user });
+    })
+      .catch(err => {
+        
+          toast.error("Something went wrong");
+          this.setState({ projects: oldProjects });
+        
+        
+      });
+    
+    const user = auth.getCurrentUser();
     const repoUrl = window.location.href + 'show/' + user.username;
     this.setState({ repoUrl });
     //this.setState({ projects: getProducts() });
@@ -142,11 +131,11 @@ class Dashboard extends Component {
             <Modal
               openButtonLabel="Share Repository"
               secondaryButtonLabel=" Cancel"
-              
+              share={true}
               value={repoUrl}
               titleContent="Share your project repository or use it in your digital resume."
               headContent="Copy the project repository url and share wherever you want"
-              textField={true}/>
+              />
             </Grid>
           }
           <Grid container spacing={2}
@@ -165,8 +154,7 @@ class Dashboard extends Component {
                 key={project._id}    >
                 <CommonCard data={project} label1={project.title} label2={project.description}
                   buttonLabel1='Edit'
-                  buttonLabel2='Delete'
-                  onChange={this.onChangeEdit}
+                 
                   editHandle={this.handleEdit}
                   deleteHandle={this.handleDelete}
                   cardClickHandle={() => this.handleClick(project.title)}

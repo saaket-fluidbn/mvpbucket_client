@@ -10,6 +10,7 @@ import CommonButton from './../buttons/button';
 import Modal from '../common/modal';
 import { capitalize } from './../../utils/capitalize';
 
+
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
@@ -19,10 +20,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CommonCard({ data, label1, label2, buttonLabel1, buttonLabel2, editHandle, deleteHandle, cardClickHandle, onChange }) {
+export default function CommonCard({ data, label1, label2, buttonLabel1, editHandle, deleteHandle, cardClickHandle }) {
     const classes = useStyles();
-  const titleContentDelete = `Are you sure to delete the project ${capitalize(data.title)}? Action can't be undone.`
-  const titleContentEdit = `Edit project ${capitalize(data.title)}.`
+  const titleContent = `Are you sure to delete the project ${capitalize(data.title)}? Action can't be undone.`
+ 
 
   return (
         <Card className={classes.card}>
@@ -43,8 +44,8 @@ export default function CommonCard({ data, label1, label2, buttonLabel1, buttonL
             </CardActionArea>
             <CardActions>
                 <p style={{ fontWeight: 'bold' }}>Status: {data.isLive ? ' Live' : ' Not Live'}</p>
-          {/* <CommonButton label={buttonLabel1} onClick={editHandle} size='small' /> */}
-          <Modal
+          <CommonButton label={buttonLabel1} onClick={()=>editHandle(data)} size='small' />
+          {/* <Modal
             openButtonLabel="Edit"
           primaryButtonLabel="Save"
         onChange={onChange}
@@ -54,7 +55,7 @@ export default function CommonCard({ data, label1, label2, buttonLabel1, buttonL
           size='small'
           edit={true}
             titleContent={titleContentEdit}
-          />
+          /> */}
           <Modal
             openButtonLabel="Delete"
             primaryButtonLabel="Yes, delete"
@@ -62,7 +63,7 @@ export default function CommonCard({ data, label1, label2, buttonLabel1, buttonL
             onClickPrimary={deleteHandle}
             data={data}
             size='small'
-            titleContent={titleContentDelete}
+            titleContent={titleContent}
              />
             </CardActions>
         </Card>

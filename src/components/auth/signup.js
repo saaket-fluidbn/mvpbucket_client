@@ -87,7 +87,10 @@ class Signup extends Component {
                     username={username}
                     password={password}
                     onSubmit={this.handleSubmit}
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange}
+                    label="Signup"
+                     heading="Signup"
+                     signup={true}/>
       </>
     )
   }

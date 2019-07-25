@@ -11,7 +11,10 @@ const config = {
 export const addProject = (project) => {
     return  http.post(api, project, config);
 }
-
+export const updateProject = (project, id) => {
+    
+    return http.put(`${api}/${id}`, project, config);
+}
 export const getProjects = () => {
     return http.get(api, config);
 }

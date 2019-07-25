@@ -22,7 +22,7 @@ import ProtectedRoute from './components/common/protectedRoute';
 import LoggedRoute from './components/common/loggedRoute';
 import { search } from './services/searchService';
 // import { getProject } from './services/projectDataService';
-
+import EditProject from './components/editProject';
 
 class App extends React.Component {
  
@@ -68,6 +68,7 @@ class App extends React.Component {
           <Route path='/logout' component={Logout} />
            <Route path='/show/:username' component={ProjectRepository} />
           <ProtectedRoute path='/template/example' component={ExampleTemplate} />
+          <ProtectedRoute path='/project/edit' component={EditProject} />
           <ProtectedRoute path='/new' component={ProductTemplate} />
           <ProtectedRoute path='/docBucket' component={Interface} />
           <ProtectedRoute path='/new-docBucket' component={NewDocBucket} />

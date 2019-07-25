@@ -22,7 +22,7 @@ import { toast } from 'react-toastify';
 class ProductTemplate extends Component {
 
     state = {
-        isLive: false,
+        isLive: true,
         liveurl: '',
         title: '',
         description: '',
@@ -136,7 +136,7 @@ class ProductTemplate extends Component {
                     <form onSubmit={this.handleSubmit} className={classes.form} noValidate style={{ marginTop: "5%" }}>
                         <Grid container spacing={2}>
                                 <Grid xs={12}>
-                                    <IosSwitch onClick={this.handleClickIosSwitch} />
+                                    <IosSwitch onClick={this.handleClickIosSwitch} defaultVal={isLive} />
                                 </Grid>
                             
                                 {/* project live url if live */}
